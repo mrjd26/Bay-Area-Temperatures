@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+
+
+<body>
+<h1>Bay Area Temperatures</h1>
+<p id='heading'>
+{% for key,value in temperatures_list.items %}
+{{ key }} : {{ value }} </br>
+{% endfor %}
+</p>
+
+<script>
+	setInterval(function(){
+
+		document.getElementById("heading").innerHTML = " ";
+
+		$.ajax({
+			type: "GET",
+			url: "/?update=true",
+			dataType:"json",
+			})
+		  .done(function(response) {
+			//alert(response);
+			
+			for(var city in response){
+		
+			document.getElementById("heading").innerHTML += "</br>" + city + " : " 
+                         + "<span id='temperature'>" + response[city] + "</span>";			
+			}
+
+
+		    	});
+		},30000);
+
+</script>
+</body>
+
+
+
+</html>

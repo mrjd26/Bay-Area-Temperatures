@@ -1,0 +1,16 @@
+application: fbapifb
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: weather.wsgi.application
+
+libraries:
+- name: django
+  version: "1.4"
+
+builtins:
+- django_wsgi: on
